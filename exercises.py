@@ -60,6 +60,8 @@ class Cat(Animal):
     def __init__(self):
         self.born = "A cat has been born"
         print(self.born)
+        animal = Animal()
+
 
 
 class Dog(Animal):
@@ -69,6 +71,7 @@ class Dog(Animal):
     def __init__(self):
         self.born = "A dog has been born"
         print (self.born)
+        animal = Animal()
 
 print()
 cat = Cat()
