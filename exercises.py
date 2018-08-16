@@ -46,9 +46,50 @@ print(bob.name, "has", bob.money, "dollars.")
 
 class Animal():
     name = ""
+    def eat(self):
+        print ("munch munch")
+    def makeNoise(self):
+        print ("Grrrs says " + self.name)
+    def __init__(self):
+        self.born = "An animal has been born"
+        print(self.born)
 
-def eat():
-    return "munch munch"
+class Cat(Animal):
+    def makeNoise(self):
+        print ("meow " + "says " + self.name)
+    def __init__(self):
+        self.born = "A cat has been born"
+        print(self.born)
 
-def makeNoise():
-    return "Grrrs says "
+
+class Dog(Animal):
+    def makeNoise(self):
+        print ("Bark " + "says " + self.name)
+
+    def __init__(self):
+        self.born = "A dog has been born"
+        print (self.born)
+
+print()
+cat = Cat()
+cat.name = "Kitty"
+cat.makeNoise()
+cat.eat()
+print()
+
+dog1 = Dog()
+dog1.name = "Rambo"
+dog1.makeNoise()
+dog1.eat()
+print()
+
+dog2 = Dog()
+dog2.name = "Silver"
+dog2.makeNoise()
+dog2.eat()
+print()
+
+giraffe = Animal()
+giraffe.name = "Mark"
+giraffe.makeNoise()
+giraffe.eat()
