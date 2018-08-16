@@ -51,7 +51,8 @@ while done==False:
                 newbutterfly = mycritters.Butterfly()
                 critterlist.append(newbutterfly)
             if event.key == pygame.K_s:
-                newcaterpillar.change_colour()
+                for critter in critterlist:
+                    critter.change_colour()
 
     # Draw the background scene
     draw_background()

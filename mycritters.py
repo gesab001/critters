@@ -11,40 +11,51 @@ purple   = ( 255,   0, 255)
 brown     = ( 125, 100, 100)
 
 class Caterpillar():
+
+    colourScheme = [black, white, red, yellow, purple, brown]
+    colorOfBody = 1
+    colorOfFace = 2
+    colorOfAntenna = 3
+    colorOfEyes = 4
+    colorOfLegs = 5
     def __init__(self):
-        colourScheme = [black, white, green, red, yellow, purple, brown]
-        colorChoice = 0
-        bugSize = random.randrange(0,4)
+
+        bugSize = random.randrange(3,7)
         x = random.randrange(50,950)
         y = random.randrange(600,700)
         self.xcoord = x
         self.ycoord = y
         self.size = bugSize
-        self.colors = colourScheme
-        self.colorIndex = colorChoice
-        self.colorBody = colourScheme[self.colorIndex]
-        self.colorFace = colourScheme[3]
+        #self.colors = colourScheme
+        #self.colorIndex = colorIndex
+        #self.colorBody = self.colorOfBody
+        #if self.colorIndex > 6:
+        #    self.colorIndex=-1
+        #self.colorFace = colourScheme[self.colorIndex+1]
 
     def draw_critter(self, screen):
         x = self.xcoord 
         y = self.ycoord
         size = self.size
         incrementX = 25
-        bodyColor = self.colorBody
+        bodyColor = self.colourScheme[self.colorOfBody]
+        faceColor = self.colourScheme[self.colorOfFace]
         while size >0:
            pygame.draw.ellipse(screen, bodyColor, [x+incrementX, y, 40, 45])
+           pygame.draw.line(screen, black, (x+incrementX + 11, y + 50), (x+incrementX + 9, y + 30), 3)  # left leg
+           pygame.draw.line(screen, black, (x+incrementX + 25, y + 50), (x+incrementX + 26, y + 30), 3)  # right leg
            incrementX+=25
            size-=1
-        pygame.draw.ellipse(screen, red, [x, y, 40, 45])
-        pygame.draw.ellipse(screen,black, [x+6, y+10, 10, 15])
-        pygame.draw.ellipse(screen,black, [x+24, y+10, 10, 15])
-        pygame.draw.line(screen,black, (x+11, y+1), (x+9, y-10), 3)
-        pygame.draw.line(screen,black, (x+25, y+1), (x+26, y-10), 3)
+        pygame.draw.ellipse(screen, faceColor, [x, y, 40, 45]) #face
+        pygame.draw.ellipse(screen,black, [x+6, y+10, 10, 15])#left eye
+        pygame.draw.ellipse(screen,black, [x+24, y+10, 10, 15]) #right eye
+        pygame.draw.line(screen,black, (x+11, y+1), (x+9, y-10), 3) #left leg
+        pygame.draw.line(screen,black, (x+25, y+1), (x+26, y-10), 3) #right leg
 
     def change_colour(self):
-        super.colorIndex+=1
-        if super.colorIndex>len(super.colors):
-            super.colorIndex=0
+        self.colorOfBody = self.colorOfBody+1
+        if self.colorOfBody>len(self.colourScheme)-1:
+            self.colorOfBody = 0
 
 
 class Butterfly():

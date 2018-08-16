@@ -40,7 +40,7 @@ nancy.money = 100
 
 bob = Person()
 bob.name = "Bob"
-bob.money = 50
+bob.money = 60
 
 print(bob.name, "has", bob.money, "dollars.")
 
