@@ -67,26 +67,45 @@ class Caterpillar():
 
 
 class Butterfly():
+    colourScheme = [black, white, green, red, yellow, purple, brown]
+    colourOfAntenna = 0
+    colourOfWing1 = 1
+    colourOfWing2 = 1
+    colourOfWing3 = 1
+    colourOfWing4 = 1
+    colourOfEyes = 2
+    colourOfBody = 3
+    bodyParts = [colourOfAntenna, colourOfWing1, colourOfWing2, colourOfWing3, colourOfWing4, colourOfEyes, colourOfBody]
+
     def __init__(self):
-        colourScheme = [black, white, green, red, yellow, purple, brown]
         x = random.randrange(50, 950)
         y = random.randrange(50, 500)
         self.xcoord = x
         self.ycoord = y
-        self.colorWings = colourScheme[random.randrange(0,len(colourScheme)-1)]
-        self.colorBody = colourScheme[3]
+
     def draw_critter(self, screen):
         x = self.xcoord
         y = self.ycoord
-        colorWings = self.colorWings
-        colorBody = self.colorBody
-        pygame.draw.ellipse(screen, colorWings , [x - 50, y, 70, 90]) #left wing
-        pygame.draw.ellipse(screen, colorWings, [x + 25, y, 70, 90]) #right wing
+        colorAntenna = self.colourScheme[self.bodyParts[0]]
+        colorWing1 = self.colourScheme[self.bodyParts[1]]
+        colorWing2 = self.colourScheme[self.bodyParts[2]]
+        colorWing3 = self.colourScheme[self.bodyParts[3]]
+        colorWing4 = self.colourScheme[self.bodyParts[4]]
+        colorEyes = self.colourScheme[self.bodyParts[5]]
+        colorBody = self.colourScheme[self.bodyParts[6]]
+        pygame.draw.ellipse(screen, colorWing1 , [x - 50, y, 70, 90]) #left wing
+        pygame.draw.ellipse(screen, colorWing2, [x + 25, y, 70, 90]) #right wing
         pygame.draw.ellipse(screen, colorBody, [x, y, 40, 80]) #body
-        pygame.draw.ellipse(screen, black, [x + 6, y + 10, 10, 15])
-        pygame.draw.ellipse(screen, black, [x + 24, y + 10, 10, 15])
-        pygame.draw.line(screen, black, (x + 11, y + 1), (x + 9, y - 10), 3)
-        pygame.draw.line(screen, black, (x + 25, y + 1), (x + 26, y - 10), 3)
-            
+        pygame.draw.ellipse(screen, colorEyes, [x + 6, y + 10, 10, 15]) #left eye
+        pygame.draw.ellipse(screen, colorEyes, [x + 24, y + 10, 10, 15]) # right eye
+        pygame.draw.line(screen, colorAntenna, (x + 11, y + 1), (x + 9, y - 10), 3) #left antenna
+        pygame.draw.line(screen, colorAntenna, (x + 25, y + 1), (x + 26, y - 10), 3) #right antenna
+
+    def change_colour(self):
+        for x in range(0, 7, 1):
+            if self.bodyParts[x] == 6 :
+                self.bodyParts[x] = 0
+            else:
+                self.bodyParts[x] = self.bodyParts[x] + 1
             
             
